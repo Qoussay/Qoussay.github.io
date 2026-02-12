@@ -1,0 +1,210 @@
+:root {
+  --bg1: #ff9aa2;
+  --bg2: #ffb7b2;
+  --bg3: #ffdac1;
+  --card-bg: linear-gradient(145deg, rgba(255, 90, 120, 0.92), rgba(255, 140, 160, 0.85));
+  --card-border: rgba(255, 255, 255, 0.7);
+  --text-main: #ffffff;
+  --text-subtle: rgba(255, 255, 255, 0.9);
+  --yes: #ff1f3d;
+  --yes-hover: #e60026;
+  --no: #ffffff;
+  --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.15);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f7a3a3;
+  background-image: radial-gradient(circle at top left, #ffc1c1, transparent),
+    radial-gradient(circle at bottom right, #ffb3b3, transparent),
+    /* rose pattern layer */
+      radial-gradient(circle, rgba(255, 255, 255, 0.5) 0, transparent 55%);
+  background-size: 100% 100%, 100% 100%, 80px 80px;
+  background-blend-mode: soft-light, soft-light, normal;
+  overflow: hidden;
+}
+
+.background-gradient {
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-size='42'>🌹</text></svg>");
+  background-size: 72px 72px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.invite-container {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+}
+
+.invite-card {
+  position: relative;
+  max-width: 520px;
+  padding: 40px 36px 32px;
+  border-radius: 24px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(22px) saturate(150%);
+  text-align: center;
+  animation: floatIn 0.9s ease-out forwards;
+}
+
+.invite-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.85), transparent 55%),
+    radial-gradient(circle at 90% 100%, rgba(255, 230, 240, 0.65), transparent 55%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.invite-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.invite-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.emoji {
+  font-size: 1.8rem;
+}
+
+.invite-message {
+  margin: 0 0 28px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-subtle);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  height: 48px;
+}
+
+.btn {
+  position: relative;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 26px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.yes-btn {
+  background: radial-gradient(circle at 20% 0%, #ff6b6b, var(--yes));
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(255, 30, 70, 0.55);
+}
+
+.yes-btn:hover {
+  transform: translateY(-1px) scale(1.03);
+  background: radial-gradient(circle at 20% 0%, #ff9b9b, var(--yes-hover));
+  box-shadow: 0 18px 36px rgba(255, 30, 70, 0.7);
+}
+
+.yes-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 10px 20px rgba(255, 30, 70, 0.45);
+}
+
+.no-btn {
+  background: var(--no);
+  color: #ff6b81;
+  box-shadow: 0 10px 22px rgba(255, 255, 255, 0.8);
+}
+
+.no-btn:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(255, 255, 255, 0.95);
+}
+
+.no-btn:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 8px 18px rgba(255, 255, 255, 0.7);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.modal-content {
+  background: #ffffff;
+  color: #ff477e;
+  padding: 22px 26px;
+  border-radius: 18px;
+  font-weight: 600;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .invite-card {
+    padding: 32px 20px 26px;
+  }
+
+  .invite-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
